@@ -17,7 +17,7 @@ export const FloatingFormula: React.FC<FloatingFormulaProps> = ({ formula, style
         ...style
       }}
     >
-      <InlineMath math={formula} />
+      <InlineMath>{formula}</InlineMath>
     </div>
   );
 }; 
