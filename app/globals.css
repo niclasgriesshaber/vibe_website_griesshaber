@@ -3,19 +3,210 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+/* ML Theme Animations */
+.ml-theme {
+  position: relative;
+}
+
+.formula-container {
+  position: absolute;
+  inset: 0;
+  padding: 20px;
+}
+
+.formula {
+  font-family: 'Times New Roman', serif;
+  font-size: 1.1rem;
+  color: rgba(79, 70, 229, 0.7);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.neural-network {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 50% 50%, rgba(129, 140, 248, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 80% 50%, rgba(165, 180, 252, 0.1) 2px, transparent 2px);
+  background-size: 100px 100px;
+  background-position: 0 0;
+  opacity: 0.7;
+  animation: networkPulse 10s ease-in-out infinite;
+}
+
+.particles-ml {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at center, rgba(99, 102, 241, 0.4) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: particleFloat 15s linear infinite;
+}
+
+/* Economic History Theme */
+.econ-theme {
+  position: relative;
+}
+
+.quote-container {
+  position: absolute;
+  inset: 0;
+  padding: 20px;
+}
+
+.quote {
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(79, 70, 229, 0.7);
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.data-viz {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(0deg, 
+    transparent 24%, 
+    rgba(99, 102, 241, 0.05) 25%, 
+    rgba(99, 102, 241, 0.05) 26%, 
+    transparent 27%, 
+    transparent 74%, 
+    rgba(99, 102, 241, 0.05) 75%, 
+    rgba(99, 102, 241, 0.05) 76%, 
+    transparent 77%
+  );
+  background-size: 60px 60px;
+  opacity: 0.5;
+  animation: gridScroll 20s linear infinite;
+}
+
+.particles-econ {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at center, rgba(139, 92, 246, 0.4) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: particleFloat 20s linear infinite reverse;
+}
+
+/* Animations */
+@keyframes networkPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-100%) rotate(360deg);
+  }
+}
+
+@keyframes gridScroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-60px);
+  }
+}
+
+.animate-float-up {
+  animation: floatUp 4s ease-out forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+.animate-float-up-delayed {
+  animation: floatUp 4s ease-out forwards;
+  animation-delay: 2s;
+}
+
+.animate-fade-in-out {
+  animation: fadeInOut 8s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.animate-fade-in-out-delayed {
+  animation: fadeInOut 8s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  20%, 80% {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+}
+
+/* Base animations */
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  transition: all 0.3s ease;
+}
+
+main {
+  animation: fadeIn 1s ease-out;
+}
+
+/* Navigation animations */
+nav a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
