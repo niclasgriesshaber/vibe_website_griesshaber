@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import profilePic from '@/public/griesshaber.jpg'
 import { FloatingElements } from '../components/FloatingElements'
 
 export default function Home() {
@@ -63,12 +62,12 @@ export default function Home() {
               {/* Image Container */}
               <div className="relative w-[500px] h-[500px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.01] z-10">
                 <Image
-                  src={profilePic}
+                  src="/griesshaber.jpg"
                   alt="Niclas Griesshaber"
-                  fill
-                  style={{ objectFit: 'cover' }}
+                  width={500}
+                  height={500}
                   priority
-                  className="rounded-2xl"
+                  className="rounded-2xl object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 transition-opacity duration-500 hover:opacity-100"></div>
               </div>
