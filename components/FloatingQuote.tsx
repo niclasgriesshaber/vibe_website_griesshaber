@@ -18,7 +18,7 @@ export const FloatingQuote: React.FC<FloatingQuoteProps> = ({ text, author, styl
       }}
     >
       <blockquote className="text-gray-700 italic text-sm">
-        "{text}"
+        &ldquo;{text}&rdquo;
         <footer className="text-gray-600 text-xs mt-1">
           — {author}
         </footer>

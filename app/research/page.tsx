@@ -52,7 +52,7 @@ export default function Research() {
           {/* Quote and Vision Statement */}
           <div className="mb-12 space-y-6">
             <blockquote className="text-gray-600 text-justify italic">
-              "The historical evidence [...] suggests that in order to understand institutional influences on long-run growth, economists need ways of characterizing the wider institutional system of which each institution is just one component [...] Our best hope of success at this task will be to combine the ability of economics to simplify everything as much as possible, with the ability of history to identify where the complexity of the data resists further simplification and tells us that better analytical tools must be devised" (Ogilvie and Carus 2014, p. 490).
+              &ldquo;The historical evidence [...] suggests that in order to understand institutional influences on long-run growth, economists need ways of characterizing the wider institutional system of which each institution is just one component [...] Our best hope of success at this task will be to combine the ability of economics to simplify everything as much as possible, with the ability of history to identify where the complexity of the data resists further simplification and tells us that better analytical tools must be devised&rdquo; (Ogilvie and Carus 2014, p. 490).
             </blockquote>
 
             <div className="space-y-4">
