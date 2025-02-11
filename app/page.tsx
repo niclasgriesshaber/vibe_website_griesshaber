@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import profilePic from '@/public/griesshaber.jpg'
 import { FloatingElements } from '../components/FloatingElements'
 
 export default function Home() {
@@ -62,7 +63,7 @@ export default function Home() {
               {/* Image Container */}
               <div className="relative w-[500px] h-[500px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.01] z-10">
                 <Image
-                  src="@/public/griesshaber.jpg"
+                  src={profilePic}
                   alt="Niclas Griesshaber"
                   fill
                   style={{ objectFit: 'cover' }}
