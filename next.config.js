@@ -13,6 +13,13 @@ const nextConfig = {
         // your project has ESLint errors.
         ignoreDuringBuilds: true,
     },
+    webpack: (config) => {
+        config.module.rules.push({
+            test: /\.(png|jpe?g|gif)$/i,
+            type: 'asset/resource',
+        });
+        return config;
+    },
 }
 
 module.exports = nextConfig 

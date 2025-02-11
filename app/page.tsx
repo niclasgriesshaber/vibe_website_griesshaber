@@ -62,7 +62,7 @@ export default function Home() {
               {/* Image Container */}
               <div className="relative w-[500px] h-[500px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.01] z-10">
                 <Image
-                  src="/grießhaber.jpg"
+                  src="/griesshaber.jpg"
                   alt="Niclas Griesshaber"
                   fill
                   style={{ objectFit: 'cover' }}
