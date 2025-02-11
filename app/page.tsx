@@ -55,25 +55,25 @@ export default function Home() {
             {/* Main content with animations */}
             <div className="relative w-full flex justify-center items-center mb-12">
               {/* Left side - Economic History Quotes */}
-              <div className="absolute left-0 w-[400px] h-[600px] overflow-hidden">
+              <div className="absolute left-0 w-[400px] h-[600px] overflow-hidden pointer-events-none">
                 <FloatingElements side="left" />
               </div>
 
-              {/* Image Container */}
-              <div className="relative w-[500px] h-[500px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.01] z-10">
+              {/* Image Container - adjusted margin and z-index */}
+              <div className="relative w-[500px] h-[500px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.01] z-20 mt-12">
                 <Image
                   src="/griesshaber.jpg"
                   alt="Niclas Griesshaber"
-                  width={500}
-                  height={500}
+                  fill
+                  style={{ objectFit: 'cover' }}
                   priority
-                  className="rounded-2xl object-cover"
+                  className="rounded-2xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 transition-opacity duration-500 hover:opacity-100"></div>
               </div>
 
               {/* Right side - ML Formulas */}
-              <div className="absolute right-0 w-[400px] h-[600px] overflow-visible">
+              <div className="absolute right-0 w-[400px] h-[600px] overflow-visible pointer-events-none">
                 <FloatingElements side="right" />
               </div>
             </div>
