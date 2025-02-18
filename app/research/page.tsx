@@ -46,7 +46,7 @@ export default function Research() {
         <div className="max-w-4xl mx-auto px-6 py-12">
           {/* Introduction - centered and more compact */}
           <p className="text-base md:text-xl text-gray-800 font-bold mb-8 text-center">
-            My research is at the intersection of<br />machine learning and economic history.
+            My research is at the intersection of<span className="md:hidden"><br /></span><span className="hidden md:inline"> </span>machine learning and economic history.
           </p>
 
           {/* Quote and Vision Statement */}
