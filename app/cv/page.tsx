@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import TextParticles from '@/components/TextParticles'
+import TextParticles from '../../components/TextParticles'
 
 export default function CV() {
   return (
-    <main className="min-h-screen relative overflow-hidden">
+    <main className="min-h-screen relative overflow-x-hidden">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 -z-10 bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/80">
         {/* Animated gradient orbs */}
@@ -64,8 +64,8 @@ export default function CV() {
             </p>
           </div>
 
-          {/* Animated Text Particles */}
-          <div className="mt-8">
+          {/* Animated Text Particles - Hidden on mobile */}
+          <div className="hidden md:block mt-16">
             <TextParticles />
           </div>
         </div>

@@ -24,15 +24,16 @@ export default function TextParticles() {
 
     // Set canvas size
     const updateSize = () => {
-      canvas.width = Math.min(1300, window.innerWidth * 0.95)  // Increased maximum width
-      canvas.height = 300  // Optimal height for large text
+      const isMobile = window.innerWidth < 768
+      canvas.width = Math.min(1300, window.innerWidth * 0.95)
+      canvas.height = isMobile ? 120 : 300
     }
     updateSize()
     window.addEventListener('resize', updateSize)
 
     // Particle settings
-    const particleSize = 6  // Larger particles
-    const particleSpacing = 4  // Much denser particle placement
+    const particleSize = 4  // Slightly larger for better visibility
+    const particleSpacing = 4  // Match particle size for perfect grid
     let particles: Particle[] = []
     const texts = ['ECONOMIC HISTORY', 'MACHINE LEARNING']
     let currentTextIndex = 0
@@ -42,8 +43,10 @@ export default function TextParticles() {
       // Clear before drawing
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       
-      // Set up text style
-      ctx.font = 'bold 120px Arial'  // Much bigger font
+      // Set up text style with responsive font size
+      const isMobile = window.innerWidth < 768
+      const fontSize = isMobile ? 32 : 120
+      ctx.font = `bold ${fontSize}px Arial`
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       ctx.fillStyle = '#000'
@@ -52,66 +55,42 @@ export default function TextParticles() {
       const textY = canvas.height / 2
       ctx.fillText(text, canvas.width / 2, textY)
       
-      // Sample pixels
+      // Sample pixels with perfect grid alignment
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
       const pixels = imageData.data
       const newParticles: Particle[] = []
 
-      // Keep track of available target positions
-      const targetPositions: Array<{x: number, y: number}> = []
-      for (let y = 0; y < canvas.height; y += particleSpacing) {
-        for (let x = 0; x < canvas.width; x += particleSpacing) {
-          const i = (y * canvas.width + x) * 4
-          if (pixels[i + 3] > 128) {
-            targetPositions.push({x, y})
-          }
-        }
-      }
+      // Calculate text boundaries for precise grid
+      const textWidth = ctx.measureText(text).width
+      const textHeight = fontSize * 0.8 // Approximate height based on font size
+      const startX = Math.round((canvas.width - textWidth) / 2)
+      const startY = Math.round((canvas.height - textHeight) / 2)
+      const endX = Math.round(startX + textWidth)
+      const endY = Math.round(startY + textHeight)
 
-      // Reuse existing particles if available
-      if (particles.length > 0) {
-        const reusedParticles = particles.slice(0, Math.min(particles.length, targetPositions.length * 2))
-        reusedParticles.forEach((particle, index) => {
-          const targetPos = targetPositions[Math.floor(index / 2)]
-          if (targetPos) {
-            particle.targetX = targetPos.x
-            particle.targetY = targetPos.y
-          }
-        })
-        
-        // Create additional particles if needed
-        const remainingPositions = targetPositions.slice(Math.floor(reusedParticles.length / 2))
-        remainingPositions.forEach(pos => {
-          for (let p = 0; p < 2; p++) {
+      // Create a perfect grid of sampling points
+      for (let y = startY; y < endY; y += particleSpacing) {
+        for (let x = startX; x < endX; x += particleSpacing) {
+          // Ensure we're on the grid
+          const gridX = Math.round(x / particleSpacing) * particleSpacing
+          const gridY = Math.round(y / particleSpacing) * particleSpacing
+          
+          // Sample the pixel at this grid point
+          const i = (gridY * canvas.width + gridX) * 4
+          if (pixels[i + 3] > 128) {  // Check alpha channel
+            // Create a particle at this grid point
             newParticles.push({
-              x: Math.random() * canvas.width,
-              y: Math.random() * canvas.height,
-              targetX: pos.x,
-              targetY: pos.y,
+              x: canvas.width / 2,  // Start from center
+              y: canvas.height / 2,  // Start from center
+              targetX: gridX,
+              targetY: gridY,
               size: particleSize,
               color: `rgba(99, 102, 241, ${0.95})`,
-              speed: 0.08 + Math.random() * 0.02
+              speed: 0.08
             })
           }
-        })
-        
-        return [...reusedParticles, ...newParticles]
-      }
-
-      // If no existing particles, create new ones
-      targetPositions.forEach(pos => {
-        for (let p = 0; p < 2; p++) {
-          newParticles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            targetX: pos.x,
-            targetY: pos.y,
-            size: particleSize,
-            color: `rgba(99, 102, 241, ${0.95})`,
-            speed: 0.08 + Math.random() * 0.02
-          })
         }
-      })
+      }
 
       return newParticles
     }
@@ -119,7 +98,7 @@ export default function TextParticles() {
     // Animation
     let animationFrameId: number
     let lastTime = 0
-    const morphInterval = 8000  // Longer display time
+    const morphInterval = 8000
 
     const animate = (timestamp: number) => {
       if (!ctx) return
@@ -127,23 +106,20 @@ export default function TextParticles() {
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Update and draw particles
+      // Update and draw particles with perfect positioning
       particles.forEach(particle => {
-        // Smooth easing
+        // Smooth easing with consistent speed
         const dx = particle.targetX - particle.x
         const dy = particle.targetY - particle.y
         particle.x += dx * particle.speed
         particle.y += dy * particle.speed
 
-        // Draw particle
+        // Draw particle with pixel-perfect alignment
         ctx.beginPath()
         ctx.fillStyle = particle.color
-        ctx.fillRect(
-          Math.round(particle.x),
-          Math.round(particle.y),
-          particle.size,
-          particle.size
-        )
+        const x = Math.round(particle.x / particleSpacing) * particleSpacing
+        const y = Math.round(particle.y / particleSpacing) * particleSpacing
+        ctx.fillRect(x, y, particleSize, particleSize)
       })
 
       // Check if it's time to morph
@@ -167,11 +143,11 @@ export default function TextParticles() {
   }, [])
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center -mt-8 md:mt-0">
       <canvas
         ref={canvasRef}
         style={{ 
-          height: '300px',
+          height: 'auto',
           width: '100%',
           maxWidth: '1300px'
         }}

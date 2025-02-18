@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Research() {
   return (
-    <main className="min-h-screen relative overflow-hidden">
+    <main className="min-h-screen relative overflow-x-hidden">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 -z-10 bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/80">
         {/* Animated gradient orbs */}
@@ -45,8 +45,8 @@ export default function Research() {
         {/* Research Content */}
         <div className="max-w-4xl mx-auto px-6 py-12">
           {/* Introduction - centered and more compact */}
-          <p className="text-lg text-gray-600 font-light mb-8 text-center">
-            My research is at the intersection of machine learning and economic history.
+          <p className="text-base md:text-xl text-gray-800 font-bold mb-8 text-center">
+            My research is at the intersection of<br />machine learning and economic history.
           </p>
 
           {/* Quote and Vision Statement */}

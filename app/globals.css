@@ -7,6 +7,12 @@
   --background-rgb: 255, 255, 255;
 }
 
+/* Force consistent scrollbar width */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));

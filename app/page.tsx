@@ -4,7 +4,7 @@ import { FloatingElements } from '../components/FloatingElements'
 
 export default function Home() {
   return (
-    <main className="min-h-screen relative overflow-hidden">
+    <main className="min-h-screen relative overflow-x-hidden">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 -z-10 bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/80">
         {/* Animated gradient orbs */}
@@ -48,19 +48,19 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col items-center">
             {/* Title above image */}
-            <h2 className="text-4xl font-light mb-8 tracking-tight">
-              I am a researcher in Economic History and Machine Learning.
+            <h2 className="text-xl md:text-4xl font-light mb-4 md:mb-8 mt-4 md:mt-8 tracking-tight text-center">
+              I am a researcher in<br className="md:hidden" /> Economic History and Machine Learning.
             </h2>
 
             {/* Main content with animations */}
-            <div className="relative w-full flex justify-center items-center mb-12">
-              {/* Left side - Economic History Quotes */}
-              <div className="absolute left-0 w-[400px] h-[600px] overflow-hidden pointer-events-none">
+            <div className="relative w-full flex justify-center items-center mb-6 md:mb-12">
+              {/* Left side - Economic History Quotes - Hidden on mobile */}
+              <div className="hidden md:block absolute left-0 w-[400px] h-[600px] overflow-hidden pointer-events-none">
                 <FloatingElements side="left" />
               </div>
 
               {/* Image Container - adjusted margin and z-index */}
-              <div className="relative w-[500px] h-[500px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.01] z-20 mt-12">
+              <div className="relative w-[500px] h-[500px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.01] z-20">
                 <Image
                   src="/griesshaber.jpg"
                   alt="Niclas Griesshaber"
@@ -72,15 +72,15 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 transition-opacity duration-500 hover:opacity-100"></div>
               </div>
 
-              {/* Right side - ML Formulas */}
-              <div className="absolute right-0 w-[400px] h-[600px] overflow-visible pointer-events-none">
+              {/* Right side - ML Formulas - Hidden on mobile */}
+              <div className="hidden md:block absolute right-0 w-[400px] h-[600px] overflow-visible pointer-events-none">
                 <FloatingElements side="right" />
               </div>
             </div>
             
             {/* Contact Section */}
-            <div className="mb-16">
-              <p className="text-xl text-gray-700 font-light">
+            <div className="mb-8 md:mb-16">
+              <p className="text-xl md:text-xl text-gray-700 font-light text-center">
                 Feel free to reach out at{' '}
                 <a 
                   href="mailto:niclasgriesshaber@outlook.com"
