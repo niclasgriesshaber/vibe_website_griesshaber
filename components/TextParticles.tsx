@@ -25,21 +25,21 @@ export default function TextParticles() {
     // Set canvas size
     const updateSize = () => {
       const isMobile = window.innerWidth < 768
-      canvas.width = Math.min(1300, window.innerWidth * 0.95)
+      canvas.width = Math.min(2000, window.innerWidth * 0.98)
       canvas.height = isMobile ? 120 : 300
     }
     updateSize()
     window.addEventListener('resize', updateSize)
 
     // Particle settings
-    const particleSize = 4  // Slightly larger for better visibility
-    const particleSpacing = 4  // Match particle size for perfect grid
+    const particleSize = 2
+    const particleSpacing = 2
     let particles: Particle[] = []
     const texts = ['ECONOMIC HISTORY', 'MACHINE LEARNING']
     let currentTextIndex = 0
     
     // Create particles from text
-    const createParticlesFromText = (text: string) => {
+    const createParticlesFromText = (text: string, isTransition = false) => {
       // Clear before drawing
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       
@@ -47,46 +47,140 @@ export default function TextParticles() {
       const isMobile = window.innerWidth < 768
       const fontSize = isMobile ? 32 : 120
       ctx.font = `bold ${fontSize}px Arial`
+      
+      // Measure text first without drawing
+      const metrics = ctx.measureText(text)
+      const actualWidth = metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight
+      const actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent
+      
+      // Calculate position to center text properly
+      const textX = canvas.width / 2
+      const textY = canvas.height / 2
+      
+      // Draw text
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       ctx.fillStyle = '#000'
+      ctx.fillText(text, textX, textY)
       
-      // Draw text
-      const textY = canvas.height / 2
-      ctx.fillText(text, canvas.width / 2, textY)
-      
-      // Sample pixels with perfect grid alignment
+      // Sample pixels with higher resolution
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
       const pixels = imageData.data
       const newParticles: Particle[] = []
 
-      // Calculate text boundaries for precise grid
-      const textWidth = ctx.measureText(text).width
-      const textHeight = fontSize * 0.8 // Approximate height based on font size
-      const startX = Math.round((canvas.width - textWidth) / 2)
-      const startY = Math.round((canvas.height - textHeight) / 2)
-      const endX = Math.round(startX + textWidth)
-      const endY = Math.round(startY + textHeight)
+      // Calculate text boundaries with proper centering
+      const startX = Math.floor(textX - actualWidth / 2) - 2
+      const startY = Math.floor(textY - actualHeight / 2) - 2
+      const endX = Math.ceil(textX + actualWidth / 2) + 2
+      const endY = Math.ceil(textY + actualHeight / 2) + 2
 
-      // Create a perfect grid of sampling points
+      // Store valid positions for transition
+      const validPositions: { x: number; y: number }[] = []
+
+      // Helper function to check if a pixel is part of text
+      const isTextPixel = (x: number, y: number) => {
+        const idx = (Math.floor(y) * canvas.width + Math.floor(x)) * 4
+        const alpha = pixels[idx + 3]
+        return alpha > 0
+      }
+
+      // Scan for text pixels with higher precision
       for (let y = startY; y < endY; y += particleSpacing) {
         for (let x = startX; x < endX; x += particleSpacing) {
-          // Ensure we're on the grid
-          const gridX = Math.round(x / particleSpacing) * particleSpacing
-          const gridY = Math.round(y / particleSpacing) * particleSpacing
-          
-          // Sample the pixel at this grid point
-          const i = (gridY * canvas.width + gridX) * 4
-          if (pixels[i + 3] > 128) {  // Check alpha channel
-            // Create a particle at this grid point
+          const hasPixel = (offsetX: number, offsetY: number) => {
+            const idx = (Math.floor(y + offsetY) * canvas.width + Math.floor(x + offsetX)) * 4
+            const alpha = pixels[idx + 3]
+            return alpha > 0
+          }
+
+          // Check if this is part of a character's right edge
+          const isRightEdge = !isTextPixel(x + 2, y) && isTextPixel(x, y)
+
+          // Comprehensive pixel check
+          if (
+            hasPixel(-1, -1) || hasPixel(0, -1) || hasPixel(1, -1) ||
+            hasPixel(-1, 0)  || hasPixel(0, 0)  || hasPixel(1, 0) ||
+            hasPixel(-1, 1)  || hasPixel(0, 1)  || hasPixel(1, 1)
+          ) {
+            // Add base particle
+            validPositions.push({ 
+              x: Math.round(x), 
+              y: Math.round(y)
+            })
+
+            // Add extra particles for right edges (like the G's right side)
+            if (isRightEdge) {
+              validPositions.push({ 
+                x: Math.round(x + 1), 
+                y: Math.round(y)
+              })
+              // Add diagonal particles for better edge coverage
+              validPositions.push({ 
+                x: Math.round(x + 1), 
+                y: Math.round(y + 1)
+              })
+              validPositions.push({ 
+                x: Math.round(x + 1), 
+                y: Math.round(y - 1)
+              })
+            }
+          }
+        }
+      }
+
+      // Create particles
+      if (!isTransition) {
+        // Initial spawn - circular formation
+        validPositions.forEach(pos => {
+          const angle = Math.random() * Math.PI * 2
+          const distance = Math.random() * 100
+          newParticles.push({
+            x: canvas.width / 2 + Math.cos(angle) * distance,
+            y: canvas.height / 2 + Math.sin(angle) * distance,
+            targetX: pos.x,
+            targetY: pos.y,
+            size: particleSize,
+            color: `rgba(99, 102, 241, ${0.95})`,
+            speed: 0.05 + Math.random() * 0.03
+          })
+        })
+      } else {
+        // Simplified transition logic
+        const numParticles = Math.max(particles.length, validPositions.length)
+        
+        // Create a pool of available target positions
+        const availableTargets = [...validPositions]
+        
+        // First, reuse existing particles
+        particles.forEach((particle, index) => {
+          if (index < availableTargets.length) {
+            const target = availableTargets[index]
             newParticles.push({
-              x: canvas.width / 2,  // Start from center
-              y: canvas.height / 2,  // Start from center
-              targetX: gridX,
-              targetY: gridY,
+              x: particle.x,
+              y: particle.y,
+              targetX: target.x,
+              targetY: target.y,
               size: particleSize,
               color: `rgba(99, 102, 241, ${0.95})`,
-              speed: 0.08
+              speed: 0.03
+            })
+          }
+        })
+        
+        // Add new particles if needed
+        if (validPositions.length > particles.length) {
+          for (let i = particles.length; i < validPositions.length; i++) {
+            const target = validPositions[i]
+            // Create new particles from the edges
+            const edgeX = target.x < canvas.width / 2 ? -20 : canvas.width + 20
+            newParticles.push({
+              x: edgeX,
+              y: target.y,
+              targetX: target.x,
+              targetY: target.y,
+              size: particleSize,
+              color: `rgba(99, 102, 241, ${0.95})`,
+              speed: 0.03
             })
           }
         }
@@ -103,37 +197,35 @@ export default function TextParticles() {
     const animate = (timestamp: number) => {
       if (!ctx) return
 
-      // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Update and draw particles with perfect positioning
       particles.forEach(particle => {
-        // Smooth easing with consistent speed
         const dx = particle.targetX - particle.x
         const dy = particle.targetY - particle.y
         particle.x += dx * particle.speed
         particle.y += dy * particle.speed
 
-        // Draw particle with pixel-perfect alignment
         ctx.beginPath()
         ctx.fillStyle = particle.color
-        const x = Math.round(particle.x / particleSpacing) * particleSpacing
-        const y = Math.round(particle.y / particleSpacing) * particleSpacing
-        ctx.fillRect(x, y, particleSize, particleSize)
+        ctx.fillRect(
+          Math.round(particle.x),
+          Math.round(particle.y),
+          particleSize,
+          particleSize
+        )
       })
 
-      // Check if it's time to morph
       if (timestamp - lastTime > morphInterval) {
         currentTextIndex = (currentTextIndex + 1) % texts.length
-        particles = createParticlesFromText(texts[currentTextIndex])
+        const newParticles = createParticlesFromText(texts[currentTextIndex], true)
+        particles = newParticles
         lastTime = timestamp
       }
 
       animationFrameId = requestAnimationFrame(animate)
     }
 
-    // Start animation
-    particles = createParticlesFromText(texts[0])
+    particles = createParticlesFromText(texts[0], false)
     animate(0)
 
     return () => {
@@ -149,7 +241,7 @@ export default function TextParticles() {
         style={{ 
           height: 'auto',
           width: '100%',
-          maxWidth: '1300px'
+          maxWidth: '2000px'
         }}
       />
     </div>
