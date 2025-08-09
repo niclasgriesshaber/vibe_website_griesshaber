@@ -52,15 +52,17 @@ export default function Home() {
               I am a researcher in<br className="md:hidden" /> Economic History and Machine Learning.
             </h2>
 
-            {/* Main content with animations */}
-            <div className="relative w-full flex justify-center items-center mb-6 md:mb-12">
+            {/* Main content with animations - grid to avoid overlap */}
+            <div className="relative w-full grid grid-cols-1 lg:[grid-template-columns:minmax(0,320px)_minmax(0,1fr)_minmax(0,320px)] items-center gap-10 mb-6 md:mb-12">
               {/* Left side - Economic History Quotes - Hidden on mobile */}
-              <div className="hidden md:block absolute left-0 w-[400px] h-[600px] overflow-hidden pointer-events-none">
-                <FloatingElements side="left" />
+              <div className="hidden lg:block px-4">
+                <div className="relative h-[500px] pointer-events-none">
+                  <FloatingElements side="left" />
+                </div>
               </div>
 
-              {/* Image Container - adjusted margin and z-index */}
-              <div className="relative w-[500px] h-[500px] rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.01] z-20">
+              {/* Image Container - responsive size and constrained to center track */}
+              <div className="relative justify-self-center w-full max-w-[500px] aspect-square rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.01] z-20">
                 <Image
                   src="/griesshaber.jpg"
                   alt="Niclas Griesshaber"
@@ -73,8 +75,10 @@ export default function Home() {
               </div>
 
               {/* Right side - ML Formulas - Hidden on mobile */}
-              <div className="hidden md:block absolute right-0 w-[400px] h-[600px] overflow-visible pointer-events-none">
-                <FloatingElements side="right" />
+              <div className="hidden lg:block px-4">
+                <div className="relative h-[500px] pointer-events-none">
+                  <FloatingElements side="right" />
+                </div>
               </div>
             </div>
             

@@ -73,23 +73,27 @@ export function FloatingElements({ side }: FloatingElementsProps) {
       style={{
         position: 'absolute',
         top: position === 'top' ? '20%' : '60%',
-        left: '25%',
-        zIndex: 100,
+        left: 0,
+        right: 0,
+        zIndex: 10,
         overflow: 'visible',
+        width: '100%'
       }}
     >
-      <div
-        className="katex-display"
-        style={{ overflow: 'visible', width: 'max-content' }}
-        dangerouslySetInnerHTML={{
-          __html: katex.renderToString(formula, {
-            throwOnError: false,
-            displayMode: true,
-            macros: { "\\mathbb": "\\mathbf" },
-            output: 'html'
-          })
-        }}
-      />
+      <div style={{ overflow: 'hidden', display: 'flex', justifyContent: 'center', padding: '0 4px' }}>
+        <div
+          className="katex-display"
+          style={{ overflow: 'visible', width: 'max-content', transform: 'scale(0.9)', transformOrigin: 'top center', fontSize: '0.95rem' }}
+          dangerouslySetInnerHTML={{
+            __html: katex.renderToString(formula, {
+              throwOnError: false,
+              displayMode: true,
+              macros: { "\\mathbb": "\\mathbf" },
+              output: 'html'
+            })
+          }}
+        />
+      </div>
     </motion.div>
   )
 
@@ -102,8 +106,8 @@ export function FloatingElements({ side }: FloatingElementsProps) {
       style={{
         position: 'absolute',
         top: position === 'top' ? '20%' : '60%',
-        left: '10%',
-        maxWidth: '280px',
+        left: '5%',
+        maxWidth: '320px',
         zIndex: 10,
         fontFamily: 'Computer Modern'
       }}
