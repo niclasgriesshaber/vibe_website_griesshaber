@@ -45,7 +45,6 @@ export const formulas = [
   "\\begin{align*} D_{KL}(P||Q) &= \\sum_{x} P(x)\\log\\frac{P(x)}{Q(x)} \\end{align*}",
   
   // Reinforcement Learning
-  "\\begin{align*} Q(s,a) &= Q(s,a) \\\\ &\\quad + \\alpha[r + \\gamma\\max_{a'}Q(s',a') - Q(s,a)] \\end{align*}",
   "\\begin{align*} A(s,a) &= Q(s,a) - V(s) \\end{align*}",
   "\\begin{align*} \\pi_{\\theta}(a|s) &= \\frac{\\exp(f_{\\theta}(s,a))}{\\sum_{a'}\\exp(f_{\\theta}(s,a'))} \\end{align*}",
   
