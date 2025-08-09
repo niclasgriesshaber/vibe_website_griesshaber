@@ -53,7 +53,7 @@ export default function Home() {
             </h2>
 
             {/* Main content with animations - grid to avoid overlap */}
-            <div className="relative w-full grid grid-cols-1 lg:[grid-template-columns:minmax(0,320px)_minmax(0,1fr)_minmax(0,320px)] items-center gap-10 mb-6 md:mb-12">
+            <div className="relative w-full grid grid-cols-1 lg:[grid-template-columns:minmax(0,320px)_minmax(0,1fr)_minmax(0,320px)] items-center gap-10 mb-4 md:mb-8">
               {/* Left side - Economic History Quotes - Hidden on mobile */}
               <div className="hidden lg:block px-4">
                 <div className="relative h-[500px] pointer-events-none">
