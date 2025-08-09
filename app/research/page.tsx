@@ -49,12 +49,8 @@ export default function Research() {
             My research is at the intersection of<span className="md:hidden"><br /></span><span className="hidden md:inline"> </span>machine learning and economic history.
           </p>
 
-          {/* Quote and Vision Statement */}
+          {/* Vision Statement */}
           <div className="mb-12 space-y-6">
-            <blockquote className="text-gray-600 text-justify italic">
-              &ldquo;The historical evidence [...] suggests that in order to understand institutional influences on long-run growth, economists need ways of characterizing the wider institutional system of which each institution is just one component [...] Our best hope of success at this task will be to combine the ability of economics to simplify everything as much as possible, with the ability of history to identify where the complexity of the data resists further simplification and tells us that better analytical tools must be devised&rdquo; (Ogilvie and Carus 2014, p. 490).
-            </blockquote>
-
             <div className="space-y-4">
               <p className="text-gray-800 text-justify">
                 With multimodal large language models we can build large-scale historical text data sets based on archival sources at faster speeds than ever before.
@@ -94,16 +90,16 @@ export default function Research() {
               </div>
 
               {/* ArXiv paper with link */}
-              <div className="group hover:bg-blue-50/30 hover:border hover:border-black p-4 -mx-4 rounded-lg transition-all duration-300">
-                <h3 className="text-xl font-light mb-2 leading-relaxed">
-                  <Link href="https://arxiv.org/abs/2504.00414" className="text-blue-600 hover:text-blue-700 underline" target="_blank" rel="noopener noreferrer">
+              <div className="group hover:bg-blue-50/30 hover:border hover:border-black p-4 -mx-4 rounded-lg transition-all duration-300 cursor-pointer">
+                <Link href="https://arxiv.org/abs/2504.00414" target="_blank" rel="noopener noreferrer" className="block">
+                  <h3 className="text-xl font-light mb-2 leading-relaxed">
                     Multimodal LLMs for OCR, OCR Post-Correction, and Named Entity Recognition in Historical Documents
-                  </Link>
-                </h3>
-                <p className="text-gray-600 text-base">
-                  <span className="italic">with </span>
-                  Gavin Greif and Robin Greif
-                </p>
+                  </h3>
+                  <p className="text-gray-600 text-base">
+                    <span className="italic">with </span>
+                    Gavin Greif and Robin Greif
+                  </p>
+                </Link>
               </div>
             </div>
           </section>
