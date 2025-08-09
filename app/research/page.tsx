@@ -74,12 +74,13 @@ export default function Research() {
             </div>
           </div>
 
-          {/* Papers under Review - more compact spacing */}
-          <section className="mb-12">
+          {/* Papers */}
+          <section>
             <h2 className="text-2xl font-medium mb-3 tracking-tight border-b pb-2">
-              Papers under Review
+              Papers
             </h2>
             <div className="space-y-6">
+              {/* Sheilagh paper on top */}
               <div className="group hover:bg-blue-50/30 hover:border hover:border-black p-4 -mx-4 rounded-lg transition-all duration-300">
                 <h3 className="text-xl font-light mb-2 leading-relaxed">
                   Transplanting Craft Guilds to Colonial Latin America: A Large Language Model Analysis
@@ -89,39 +90,19 @@ export default function Research() {
                   <Link href="https://www.sheilaghogilvie.com/" className="text-blue-500 hover:text-blue-600 transition-colors">
                     Sheilagh Ogilvie
                   </Link>
-                  <span className="italic">; currently under review at The Journal of Economic History</span>
                 </p>
               </div>
-            </div>
-          </section>
 
-          {/* Papers in Progress - more compact spacing */}
-          <section>
-            <h2 className="text-2xl font-medium mb-3 tracking-tight border-b pb-2">
-              Papers in Progress
-            </h2>
-            <div className="space-y-6">
+              {/* ArXiv paper with link */}
               <div className="group hover:bg-blue-50/30 hover:border hover:border-black p-4 -mx-4 rounded-lg transition-all duration-300">
                 <h3 className="text-xl font-light mb-2 leading-relaxed">
-                  A New Historical Dataset for Machine Translation between Early German and English: Cross-Lingual Transfer, Many-Shot In-Context Learning, and Fine-Tuning
-                </h3>
-                <p className="text-gray-600 text-base">
-                  <span className="italic">with </span>
-                  <Link href="https://www.sheilaghogilvie.com/" className="text-blue-500 hover:text-blue-600 transition-colors">
-                    Sheilagh Ogilvie
+                  <Link href="https://arxiv.org/abs/2504.00414" className="text-blue-600 hover:text-blue-700 underline" target="_blank" rel="noopener noreferrer">
+                    Multimodal LLMs for OCR, OCR Post-Correction, and Named Entity Recognition in Historical Documents
                   </Link>
-                  <span className="text-gray-600">, Jiayi Wang, Yao Lu, and Pontus Stenetorp; </span>
-                  <span className="italic">in preparation for submission in ACL</span>
-                </p>
-              </div>
-
-              <div className="group hover:bg-blue-50/30 hover:border hover:border-black p-4 -mx-4 rounded-lg transition-all duration-300">
-                <h3 className="text-xl font-light mb-2 leading-relaxed">
-                  Multimodal Large Language Models for Layout Detection and Post-OCR Correction: German Business Directories from the 18th and 19th Centuries
                 </h3>
                 <p className="text-gray-600 text-base">
                   <span className="italic">with </span>
-                  <span>Gavin Greif</span>
+                  Gavin Greif and Robin Greif
                 </p>
               </div>
             </div>
