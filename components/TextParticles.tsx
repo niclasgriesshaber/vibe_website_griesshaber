@@ -26,7 +26,7 @@ export default function TextParticles() {
     const updateSize = () => {
       const isMobile = window.innerWidth < 768
       canvas.width = Math.min(2000, window.innerWidth * 0.98)
-      canvas.height = isMobile ? 120 : 300
+      canvas.height = isMobile ? 150 : 400
     }
     updateSize()
     window.addEventListener('resize', updateSize)
