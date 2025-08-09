@@ -46,7 +46,7 @@ export default function CV() {
         {/* CV Content */}
         <div className="max-w-4xl mx-auto px-6 py-12">
           {/* Download Link */}
-          <div className="mb-12 text-center">
+          <div className="mb-16 text-center">
             <a 
               href="/cv_griesshaber.pdf" 
               className="text-2xl text-blue-500 hover:text-blue-600 transition-colors"
@@ -68,7 +68,7 @@ export default function CV() {
           </div>
 
           {/* Animated Text Particles - Hidden on mobile */}
-          <div className="hidden md:block mt-16">
+          <div className="hidden md:block">
             <TextParticles />
           </div>
         </div>
