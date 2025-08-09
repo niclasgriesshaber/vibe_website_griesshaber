@@ -51,7 +51,10 @@ export default function TextParticles() {
       // Measure text first without drawing
       const metrics = ctx.measureText(text)
       const actualWidth = metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight
-      const actualHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent
+      // Use font ascent/descent for more reliable height measurement
+      const fontAscent = metrics.fontBoundingBoxAscent || metrics.actualBoundingBoxAscent
+      const fontDescent = metrics.fontBoundingBoxDescent || metrics.actualBoundingBoxDescent
+      const actualHeight = fontAscent + fontDescent
       
       // Calculate position to center text properly
       const textX = canvas.width / 2
@@ -68,11 +71,11 @@ export default function TextParticles() {
       const pixels = imageData.data
       const newParticles: Particle[] = []
 
-      // Calculate text boundaries with proper centering
-      const startX = Math.floor(textX - actualWidth / 2) - 2
-      const startY = Math.floor(textY - actualHeight / 2) - 2
-      const endX = Math.ceil(textX + actualWidth / 2) + 2
-      const endY = Math.ceil(textY + actualHeight / 2) + 2
+      // Calculate text boundaries with proper centering and extra padding for tall letters
+      const startX = Math.floor(textX - actualWidth / 2) - 5
+      const startY = Math.floor(textY - actualHeight / 2) - 10  // Extra padding for tall letters like M, L
+      const endX = Math.ceil(textX + actualWidth / 2) + 5
+      const endY = Math.ceil(textY + actualHeight / 2) + 10
 
       // Store valid positions for transition
       const validPositions: { x: number; y: number }[] = []

@@ -53,11 +53,11 @@ export default function Research() {
           <div className="mb-12 space-y-6">
             <div className="space-y-4">
               <p className="text-gray-800 text-justify">
-                With multimodal large language models we can now build large-scale historical datasets from archival image scans at faster speed than ever before.
+                Multimodal large language models enable us to build large-scale historical datasets from archival image scans at faster speed than ever before.
               </p>
 
               <p className="text-gray-800 text-justify">
-                I am particularly interested in 19th- and 20th-century German history. With the new abundance of microlevel data, we can increase the resolution of our understanding. Institutions mattered, but how did they interact with technological change and economic growth at the local level?
+                With this new abundance of microlevel data, we can increase the resolution of our understanding. Institutions mattered, but how did they interact with technological change and economic growth at the local level?
               </p>
 
               <p className="text-gray-800 text-justify">
