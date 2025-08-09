@@ -53,19 +53,15 @@ export default function Research() {
           <div className="mb-12 space-y-6">
             <div className="space-y-4">
               <p className="text-gray-800 text-justify">
-                With multimodal large language models we can build large-scale historical text data sets based on archival sources at faster speeds than ever before.
+                With multimodal large language models we can now build large-scale historical datasets from archival image scans at faster speed than ever before.
               </p>
 
               <p className="text-gray-800 text-justify">
-                The past has happened. The data that survived is out there to be collected. As we are able to build larger datasets than ever before, the ability to ask the right questions becomes even more important.
+                I am particularly interested in 19th- and 20th-century German history. With the new abundance of microlevel data, we can increase the resolution of our understanding. Institutions mattered, but how did they interact with technological change and economic growth at the local level?
               </p>
 
               <p className="text-gray-800 text-justify">
-                With the new microlevel data abundance, we will be able to characterize the wider institutional system. We can go one level further in complexity: what made an institution inclusive or extractive in a particular region and how did this affect local economic growth?
-              </p>
-
-              <p className="text-gray-800 text-justify">
-                Tools from machine learning, such as natural language processing and computer vision, will help us to measure the inclusivity and interactions of institutions on the new microlevel data. With these tools, we can transform qualitative textual sources into quantitative data (e.g., Carus and Ogilvie, 2009). Integrating these newly constructed variables into the standard toolkit in econometrics may enable us to better understand the latent mechanisms that intertwined institutions, culture and economic growth.
+                In the long term I aim to build AI Historians: agents that read archives, build datasets, and reason across entire corpora. They could process more primary sources in a day than a human could in a lifetime and support their claims linked to the original scans. If they find new patterns, mechanistic interpretability can help us to understand their reasoning.
               </p>
             </div>
           </div>

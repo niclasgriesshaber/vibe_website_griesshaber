@@ -8,10 +8,18 @@ export const metadata: Metadata = {
   title: "Niclas Griesshaber",
   description: "Researcher in Economic History and Machine Learning",
   icons: {
-    icon: {
-      url: '/favicon.svg',
-      type: 'image/svg+xml'
-    }
+    icon: [
+      {
+        url: '/favicon.png?v=3.0',
+        sizes: '32x32',
+        type: 'image/png'
+      },
+      {
+        url: '/favicon.ico?v=3.0',
+        sizes: '16x16',
+        type: 'image/x-icon'
+      }
+    ]
   }
 };
 
