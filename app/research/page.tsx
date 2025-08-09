@@ -77,7 +77,7 @@ export default function Research() {
             </h2>
             <div className="space-y-6">
               {/* Sheilagh paper on top */}
-              <div className="group hover:bg-blue-50/30 hover:border hover:border-black p-4 -mx-4 rounded-lg transition-all duration-300">
+              <div className="p-4 -mx-4">
                 <h3 className="text-xl font-light mb-2 leading-relaxed">
                   Transplanting Craft Guilds to Colonial Latin America: A Large Language Model Analysis
                 </h3>
@@ -90,7 +90,7 @@ export default function Research() {
               </div>
 
               {/* ArXiv paper with link */}
-              <div className="group hover:bg-blue-50/30 hover:border hover:border-black p-4 -mx-4 rounded-lg transition-all duration-300 cursor-pointer">
+              <div className="p-4 -mx-4">
                 <Link href="https://arxiv.org/abs/2504.00414" target="_blank" rel="noopener noreferrer" className="block">
                   <h3 className="text-xl font-light mb-2 leading-relaxed">
                     Multimodal LLMs for OCR, OCR Post-Correction, and NER in Historical Documents
