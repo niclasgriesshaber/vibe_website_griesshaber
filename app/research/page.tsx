@@ -93,7 +93,7 @@ export default function Research() {
               <div className="group hover:bg-blue-50/30 hover:border hover:border-black p-4 -mx-4 rounded-lg transition-all duration-300 cursor-pointer">
                 <Link href="https://arxiv.org/abs/2504.00414" target="_blank" rel="noopener noreferrer" className="block">
                   <h3 className="text-xl font-light mb-2 leading-relaxed">
-                    Multimodal LLMs for OCR, OCR Post-Correction, and Named Entity Recognition in Historical Documents
+                    Multimodal LLMs for OCR, OCR Post-Correction, and NER in Historical Documents
                   </h3>
                   <p className="text-gray-600 text-base">
                     <span className="italic">with </span>
