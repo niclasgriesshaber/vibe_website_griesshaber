@@ -63,7 +63,7 @@ export default function CV() {
               I am an incoming DPhil candidate at the University of Oxford and have been awarded the Advanced Quantitative Methods Award from the Economic and Social Research Council as part of UK Research and Innovation.
             </p>
             <p className="text-gray-800 text-justify leading-8">
-              I graduated at the top of my class in the MSc in Economic History at the University of Oxford and completed the MSc in Computational Statistics and Machine Learning with Distinction at University College London (UCL). I completed two separate bachelor&apos;s degrees at the University of Tübingen, where I ranked third in my cohort in the BSc Economics and graduated among the Top 10% in the BSc Cognitive Science. I am also very grateful for the opportunity to have studied at National University of Singapore, Asia&apos;s best university.
+              I graduated at the top of my class in the MSc Economic and Social History at the University of Oxford and completed the MSc Computational Statistics and Machine Learning with Distinction at University College London (UCL). I completed two separate bachelor&apos;s degrees at the University of Tübingen, where I ranked third in my cohort in the BSc Economics and graduated among the Top 10% in the BSc Cognitive Science. I am also very grateful for the opportunity to have studied at National University of Singapore, Asia&apos;s best university.
             </p>
           </div>
 
