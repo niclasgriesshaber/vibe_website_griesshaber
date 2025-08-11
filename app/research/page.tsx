@@ -74,15 +74,17 @@ export default function Research() {
             <div className="space-y-6">
               {/* Sheilagh paper on top */}
               <div className="p-4 -mx-4">
-                <h3 className="text-xl font-light mb-2 leading-relaxed">
-                  Transplanting Craft Guilds to Colonial Latin America: A Large Language Model Analysis
-                </h3>
-                <p className="text-gray-600 text-base">
-                  <span className="italic">with </span>
-                  <Link href="https://www.sheilaghogilvie.com/" className="text-blue-500 hover:text-blue-600 transition-colors">
-                    Sheilagh Ogilvie
-                  </Link>
-                </p>
+                <Link href="https://cepr.org/publications/dp20556" target="_blank" rel="noopener noreferrer" className="block">
+                  <h3 className="text-xl font-light mb-2 leading-relaxed">
+                    Transplanting Craft Guilds to Colonial Latin America: A Large Language Model Analysis
+                  </h3>
+                  <p className="text-gray-600 text-base">
+                    <span className="italic">with </span>
+                    <Link href="https://www.sheilaghogilvie.com/" className="text-blue-500 hover:text-blue-600 transition-colors">
+                      Sheilagh Ogilvie
+                    </Link>
+                  </p>
+                </Link>
               </div>
 
               {/* ArXiv paper with link */}
