@@ -7,15 +7,18 @@
   --background-rgb: 255, 255, 255;
 }
 
-/* Force consistent scrollbar width */
+/* Force consistent scrollbar width and optimize scrolling */
 html {
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-gutter: stable;
+  -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
+  overflow-x: hidden;
+  overscroll-behavior: none; /* Prevent bounce effect */
 }
 
 /* ML Theme Animations */
@@ -182,7 +185,10 @@ body {
 
 /* Base animations */
 html {
-  scroll-behavior: smooth;
+  /* Disable smooth scroll on mobile for better performance */
+  @media (min-width: 768px) {
+    scroll-behavior: smooth;
+  }
 }
 
 a {
