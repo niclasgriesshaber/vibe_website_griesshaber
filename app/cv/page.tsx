@@ -1,5 +1,11 @@
 import Link from 'next/link'
 import TextParticles from '../../components/TextParticles'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'CV - Niclas Griesshaber',
+  description: 'Download CV as PDF',
+}
 
 export default function CV() {
   return (
