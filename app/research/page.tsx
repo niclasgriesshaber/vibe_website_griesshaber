@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function Research() {
   return (
-    <main className="min-h-screen relative">
+    <main className="relative">
       {/* Animated Background Elements - Optimized for performance */}
       <div className="fixed inset-0 -z-10 bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/80 overflow-hidden">
         {/* Animated gradient orbs with GPU acceleration */}
@@ -52,7 +52,7 @@ export default function Research() {
         </nav>
 
         {/* Research Content */}
-        <div className="max-w-4xl mx-auto px-6 py-12">
+        <div className="max-w-4xl mx-auto px-6 pt-12 pb-24">
           {/* Introduction - centered and more compact */}
           <p className="text-base md:text-xl text-gray-800 font-bold mb-8 text-center">
             My research is at the intersection of<span className="md:hidden"><br /></span><span className="hidden md:inline"> </span>machine learning and economic history.
